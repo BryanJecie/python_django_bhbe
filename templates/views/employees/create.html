@@ -1,0 +1,165 @@
+{% extends 'containers/base.html' %}
+
+<!-- For Title Here -->
+{% block title %} Users {% endblock %}
+
+<!-- For breadcrums Here -->
+
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/app/employees">Employees</a></li>
+	<li class="breadcrumb-item active">New</li>
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+<h1 class="page-header">
+	New <small>Create New <i>Employee</i> Information.</small>
+</h1>
+{% endblock %}
+
+<!-- Content Here -->
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<!-- BEGIN panel-heading -->
+			<div class="panel-heading">
+				<h4 class="panel-title">Forms:</h4>
+				<hr>
+
+			</div>
+			<!-- END panel-heading -->
+			<!-- BEGIN panel-body -->
+			<div class="panel-body">
+				<form>
+					<div class="row">
+
+						<div class="col-md-6">
+							{{context.form|crispy}}
+							<div class="form-group mt-4">
+								<label for="">Employee Image</label>
+
+								<div class="image-area mt-2">
+									<img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" />
+								</div>
+								<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm  mt-2">
+									<input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+									<label id="upload-label" for="upload" class="font-weight-light text-muted">
+										Choose file
+									</label>
+									<div class="input-group-append">
+										<label for="upload" class="btn btn-light m-0 rounded-pill px-4">
+											<i class="fa fa-cloud-upload mr-2 text-muted"></i>
+											<small class="text-uppercase font-weight-bold text-muted">
+												Choose file
+											</small>
+										</label>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="accessibility ml-5">
+								<label for="">User Accessibility</label>
+							</div>
+						</div>
+
+
+					</div>
+					<hr>
+					<button type="submit" class="btn btn-info btn-sm">Save</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- <form action="/post" method="post">
+		{{context.form|crispy}}
+	</form> -->
+	{% endblock %}
+
+
+	{% block extraCSS %}
+	<style>
+		#upload {
+			opacity: 0;
+		}
+
+		#upload-label {
+			position: absolute;
+			top: 50%;
+			left: 1rem;
+			transform: translateY(-50%);
+		}
+
+		.image-area {
+			border: 2px dashed rgba(85, 81, 81, 0.7);
+			padding: 1rem;
+			position: relative;
+		}
+
+		.image-area::before {
+			content: 'Uploaded image result';
+			color: #fff;
+			font-weight: bold;
+			text-transform: uppercase;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 0.8rem;
+			z-index: 1;
+		}
+
+		.image-area img {
+			z-index: 2;
+			position: relative;
+		}
+	</style>
+	{% endblock %}
+
+
+	{% block extraJS %}
+
+	<script>
+		/*  ==========================================
+				SHOW UPLOADED IMAGE
+		* ========================================== */
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#imageResult')
+						.attr('src', e.target.result);
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$(function () {
+			$('#upload').on('change', function () {
+				readURL(input);
+			});
+		});
+
+		/*  ==========================================
+				SHOW UPLOADED IMAGE NAME
+		* ========================================== */
+		var input = document.getElementById('upload');
+		var infoArea = document.getElementById('upload-label');
+
+		input.addEventListener('change', showFileName);
+		function showFileName(event) {
+			var input = event.srcElement;
+			var fileName = input.files[0].name;
+			infoArea.textContent = 'File name: ' + fileName;
+		}
+	</script>
+
+	{% endblock %}

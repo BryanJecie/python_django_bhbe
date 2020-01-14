@@ -1,0 +1,98 @@
+<!-- extends main here -->
+{% extends 'registration/layouts/app.html' %}
+
+<!-- extends main here -->
+{% load widget_tweaks %}
+
+<!-- for account title -->
+{% block title%} Register {% endblock %}
+<!-- for account register -->
+{% block content %}
+<div class="register">
+	<!-- BEGIN register-cover -->
+	<div class="register-cover"></div>
+	<!-- END register-cover -->
+	<!-- BEGIN register-content -->
+	<div class="register-content">
+		<!-- BEGIN register-brand -->
+		<div class="register-brand">
+			<a href="#">
+				<span class="logo"> <i class="ti-infinite"></i></span>
+				Electronic Inventory Management System
+			</a>
+		</div>
+		<!-- END register-brand -->
+		<h3 class="m-b-20"><span>Sign Up</span></h3>
+		<p class="m-b-20">
+			One Admin ID is all you need to access all the Admin services.
+		</p>
+		<!-- BEGIN register-form -->
+		<form action="/app/register" method="POST" name="register_form">
+			{% csrf_token %}
+
+			<!-- BEGIN row -->
+			<!-- {{form.as_p}} -->
+			<!-- BEGIN row -->
+			<div class="row row-space-20">
+				<!-- BEGIN col-6 -->
+				<div class="col-md-6">
+					<!-- ss -->
+					{% for field in form.visible_fields %}
+					<!-- ss -->
+
+					{% if field.name == 'email' or field.name == 'password1' or field.name == 'password2' %}
+
+					<div class="form-group">
+						{{ field.label_tag }}
+						<span class="text-danger">*</span>
+
+						{% render_field field class="form-control" %}
+					</div>
+					{% endif %}
+					<!-- ss -->
+					{% endfor %}
+				</div>
+				<div class="col-md-6">
+					<!-- ss -->
+					{% for field in form.visible_fields %}
+
+					<!-- ss -->
+
+					{% if field.name == 'first_name' or field.name == 'last_name' %}
+
+					<div class="form-group">
+						{{ field.label_tag }}
+						<span class="text-danger">*</span>
+						{% render_field field class="form-control" %}
+					</div>
+
+					{% endif %}
+					<!-- sss -->
+					{% endfor %}
+					<div class="m-t-20">
+						Already have an Adobe ID?
+						<a href="/app/login">Sign In</a>
+					</div>
+					<button type="submit" class="btn btn-primary btn-sm m-t-20">
+						Register
+					</button>
+				</div>
+
+				<!-- END col-6 -->
+				<!-- BEGIN col-6 -->
+			</div>
+			<!-- END row -->
+			<div class="m-b-10 m-t-10">
+				<div class="checkbox-inline">
+					<input type="checkbox" id="login-remember-me" value="2" />
+					<label for="login-remember-me">I have read and agree to the <a href="#">Terms of Use</a> and
+						<a href="#">Privacy Policy</a>.</label>
+				</div>
+			</div>
+
+		</form>
+		<!-- END register-form -->
+	</div>
+	<!-- END register-content -->
+</div>
+{% endblock %}

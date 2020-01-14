@@ -1,0 +1,45 @@
+{% extends 'registration/layouts/app.html' %}
+
+<!-- for account title -->
+{% block title%} Login {% endblock %}
+
+<!-- Content Here -->
+{% load crispy_forms_tags %}
+
+<!-- Content Here -->
+{% block content %}
+<div class="login">
+	<!-- BEGIN login-cover -->
+	<div class="login-cover"></div>
+	<!-- END login-cover -->
+	<!-- BEGIN login-content -->
+	<div class="login-content">
+		<!-- BEGIN login-brand -->
+		<div class="login-brand">
+			<a href="#">
+				<span class="logo"><i class="ti-infinite"></i></span>
+				Electronic Inventory Management System
+			</a>
+		</div>
+		<!-- END login-brand -->
+		<!-- BEGIN login-desc -->
+		<div class="login-desc">
+			For your protection, please verify your identity.
+		</div>
+		<!-- END login-desc -->
+		<!-- BEGIN login-form -->
+		<form method="POST" name="login_form">
+			{% csrf_token %}
+			<!-- form Here -->
+			{{form|crispy}}
+			<button type="submit" class="btn btn-primary">Login</button>
+		</form>
+		<!-- END login-form -->
+		<div class="m-t-20">
+			Not a member yet?
+			<a href="/app/register">Register Here.</a>
+		</div>
+	</div>
+	<!-- END login-content -->
+</div>
+{% endblock %}
