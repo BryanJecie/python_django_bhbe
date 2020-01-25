@@ -1,0 +1,196 @@
+{% extends 'containers/base.html' %}
+
+<!-- title -->
+{% block title %} Suppliers ~ New {% endblock %}
+
+<!-- bread crumbs -->
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/app/suppliers">Suppliers</a>
+  </li>
+  <li class="breadcrumb-item active">Show</li>
+</ul>
+<!-- {% comment %}
+<h5 class="page-header">
+  {{items.supplier.supplier_name|upper}}
+</h5>
+{% endcomment %}  -->
+
+{% endblock %}
+<!-- load form -->
+{% load crispy_forms_tags %}
+
+<!-- load Content -->
+{% block content %}
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <!-- {% comment %}
+      <img
+        class="card-img-top"
+        data-src="holder.js/100x180/?text=Image cap"
+        alt="Card image cap"
+      />
+      {% endcomment %} -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-10">
+            <h3 class="card-title">
+              {{items.supplier.supplier_name|capfirst }}
+            </h3>
+          </div>
+          <div class="col-sm-2">
+            <span class="float-right">
+              <a href="" class="mr-2 f-s-20"><i class="ti-pencil"></i></a>
+              <a href="" class="f-s-20"><i class="ti-trash text-danger"></i></a>
+            </span>
+            <!-- <h4 class="card-title">Title</h4> -->
+          </div>
+        </div>
+        <!-- <h4 class="card-title">Title</h4>
+        <p class="card-text">Text</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <i class="ti-email"></i>
+          <a href="">
+            {{items.supplier.supplier_email }}
+          </a>
+        </li>
+        <li class="list-group-item">
+          <i class="ti-mobile"></i>
+          {{items.supplier.supplier_phone }}
+        </li>
+        <li class="list-group-item">
+          <i class="ti-home"></i>
+          {{items.supplier.supplier_address }}
+        </li>
+        <li class="list-group-item">
+          {% if items.supplier.supplier_status == 'active' %}
+          <i class="ti-control-record   text-success"></i>
+          <span class="badge badge-success">
+            {{items.supplier.supplier_status|capfirst }}
+          </span>
+          {% else %}
+          <i class="ti-control-record   text-danger"></i>
+
+          <span class="badge badge-danger">
+            {{items.supplier.supplier_status|capfirst }}
+          </span>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Title</h4>
+        <p class="card-text">Body</p>
+      </div>
+    </div> -->
+  </div>
+  <div class="col-md-8">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="home-tab"
+          data-toggle="tab"
+          href="#home"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+        >
+          Orders
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="profile-tab"
+          data-toggle="tab"
+          href="#profile"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+          >Profile</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="contact-tab"
+          data-toggle="tab"
+          href="#contact"
+          role="tab"
+          aria-controls="contact"
+          aria-selected="false"
+          >Contact</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      ></div>
+      <div
+        class="tab-pane fade"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        ...
+      </div>
+      <div
+        class="tab-pane fade"
+        id="contact"
+        role="tabpanel"
+        aria-labelledby="contact-tab"
+      >
+        ...
+      </div>
+    </div>
+    <!-- {% comment %}
+    <nav class="nav nav-tabs nav-stacked">
+      <a class="nav-link active" href="#">Active link</a>
+      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link " href="#">Disabled link</a>
+    </nav>
+    {% endcomment %} 
+    {% comment %}
+    <div class="card text-left">
+      <div class="card-body">
+        <h4 class="card-title">Title</h4>
+        <p class="card-text">Body</p>
+      </div>
+    </div>
+    {% endcomment %} -->
+  </div>
+</div>
+<!-- {% comment %}
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-8  p-25">
+        <form action="/app/suppliers/store/" method="POST">
+          {% csrf_token %} {{items.form|crispy}}
+          <hr />
+          <button type="submit" class="btn btn-info" style="">Save</button>
+          <button type="button" class="btn btn-default btn-sm ">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcomment %}  -->
+
+{% endblock %}
+
+<!-- for js content -->
+{% block extraJS %}
+<script></script>
+{% endblock %}

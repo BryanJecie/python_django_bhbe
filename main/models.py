@@ -18,7 +18,7 @@ class Contact(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)
     phone = models.CharField(max_length=200)
     email = models.EmailField(max_length=120)
-    status = models.CharField(max_length=120, default='active')
+    status = models.CharField(max_length=120, default="active")
 
     def __str__(self):
         return self.email

@@ -27,10 +27,11 @@ urlpatterns = [
         include(
             [
                 url("", include("accounts.urls")),
-                # url(r'^login/', include('accounts.urls')),
-                # url(r'^register/', include('accounts.urls')),
+                url(r"^login/", include("accounts.urls")),
+                url(r"^register/", include("accounts.urls")),
                 url(r"^dashboard/", include("dashboard.urls")),
                 url(r"^employees/", include("employees.urls")),
+                url(r"^suppliers/", include("supplier.urls")),
                 url(r"^users/", include("users.urls")),
             ]
         ),

@@ -1,9 +1,16 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from . import forms
+
+from utilities.helper import navBar
+
+
+# from .models import models
 
 
 def index(response):
     context = {"navbar": navBar("employees", "manage")}
+
     return render(response, "views/employees/index.html", {"context": context})
 
 
@@ -17,12 +24,6 @@ def create(response):
     return render(response, "views/employees/create.html", {"context": context})
 
 
-def navBar(parent, child):
-
-    return {
-        "parent": parent,
-        "child": {
-            "manage": True if child == "manage" else False,
-            "new": True if child == "new" else False,
-        },
-    }
+def store(request):
+    return HttpResponse(request.POST["employeeCode"])
+    # return {"name": "test"}

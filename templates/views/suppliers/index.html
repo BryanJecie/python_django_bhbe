@@ -1,0 +1,78 @@
+{% extends 'containers/base.html' %} {% block title %} Suppliers {% endblock %}
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/app/suppliers">Suppliers</a>
+  </li>
+  <!-- <li class="breadcrumb-item active">List of active and inactive employees</li> -->
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+<h5 class="page-header">LIST <small>show the list of suppliers...</small></h5>
+{% endblock %} {% block content %}
+
+<div class="card ">
+  <div class="card-body">
+    <!-- {% comment %}
+    <h4 class="card-title">Title</h4>
+    {% endcomment %} -->
+    <table class="table table-stripe" id="supplier-table">
+      <thead>
+        <tr>
+          <th>Supplier Code</th>
+          <th>Supplier Name</th>
+          <th>Supplier Email</th>
+          <th>Supplier phone</th>
+          <th>Status</th>
+          <th class="text-center"><small>Actions</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in items.suppliers %}
+
+        <tr>
+          <td>{{supplier.supplier_code}}</td>
+          <td>
+            <a href="#">
+              {{supplier.supplier_name|capfirst}}
+            </a>
+          </td>
+          <td>{{supplier.supplier_email}}</td>
+          <td>{{supplier.supplier_phone}}</td>
+          <td>
+            {{supplier.supplier_status}}
+          </td>
+          <td class="text-center">
+            <a
+              href="/app/suppliers/{{supplier.id}}"
+              class="btn btn-default btn-xs btn-info"
+            >
+              <i class="ti-search text-white"></i>
+            </a>
+            <a class="btn btn-default btn-xs btn-primary"
+              ><i class="ti-pencil text-white"></i
+            ></a>
+            <a class="btn btn-default btn-xs btn-danger"
+              ><i class="ti-close text-white"></i
+            ></a>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %} {% block extraCSS%}
+<link
+  rel="stylesheet"
+  href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+/>
+{% endblock %} {% block extraJS %}
+<script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+  $("#supplier-table").DataTable();
+</script>
+
+{% endblock %}

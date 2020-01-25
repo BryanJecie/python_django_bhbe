@@ -1,7 +1,7 @@
 {% extends 'containers/base.html' %}
 
 <!-- For Title Here -->
-{% block title %} Users {% endblock %}
+{% block title %} Employee ~ New {% endblock %}
 
 <!-- For breadcrums Here -->
 
@@ -33,7 +33,9 @@
 			<!-- END panel-heading -->
 			<!-- BEGIN panel-body -->
 			<div class="panel-body">
-				<form>
+				<form action="/app/employees/add/" method="POST">
+					{% csrf_token %}
+
 					<div class="row">
 
 						<div class="col-md-6">

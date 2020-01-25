@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "employees.apps.EmployeesConfig",
     "dashboard.apps.DashboardConfig",
     "accounts.apps.AccountsConfig",
+    "supplier.apps.SupplierConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -144,4 +145,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/app/dashboard"
 
-LOGOUT_REDIRECT_URL = "/app/login"
+LOGOUT_REDIRECT_URL = "/"

@@ -15,7 +15,7 @@
 			<li class="nav-divider"></li>
 			<li class="nav-header">Navigation</li>
 			<li
-				class="{% if context.navbar.parent == 'dashboard' %}active{% endif %}"
+				class="{% if items.navbar.parent == 'dashboard' %}active{% endif %}"
 			>
 				<a href="/app/dashboard">
 					<i class="ti-layout"></i>
@@ -23,7 +23,7 @@
 				</a>
 			</li>
 			<li
-				class="has-sub {% if context.navbar.parent == 'employees' %}active{% endif %}"
+				class="has-sub {% if items.navbar.parent == 'employees' %}active{% endif %}"
 			>
 				<a href="javascript:;">
 					<span class="caret caret-right pull-right"></span>
@@ -31,15 +31,32 @@
 				</a>
 				<ul class="sub-menu">
 					<li
-						class="{% if context.navbar.child.manage %}active{% endif %}"
+						class="{% if items.navbar.child.manage %}active{% endif %}"
 					>
 						<a href="/app/employees">Manage Employees</a>
 					</li>
-					<li class="{% if context.navbar.child.new %}active{% endif %}">
+					<li class="{% if items.navbar.child.new %}active{% endif %}">
 						<a href="/app/employees/new">New Employee</a>
 					</li>
 					<li><a href="/app/employees/invoices">Employee Invoices</a></li>
 				</ul>
+			</li>
+			<li class="has-sub {% if items.navbar.parent == 'suppliers' %}active{% endif %}">
+				<a href="javascript:;">
+					<span class="caret caret-right pull-right"></span>
+					<i class="ti-truck"></i><span>Suppliers</span>
+				</a>
+				<ul class="sub-menu">
+					<li
+						class="{% if items.navbar.child.manage %}active{% endif %}"
+					>
+						<a href="/app/suppliers">Manage Suppliers</a>
+					</li>
+					<li class="{% if items.navbar.child.new %}active{% endif %}">
+						<a href="/app/suppliers/new">New Supplier</a>
+					</li>
+				</ul>
+
 			</li>
 			<li>
 				<a href="/app/users"><i class="ti-user"></i><span>Users</span></a>
