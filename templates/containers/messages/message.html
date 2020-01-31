@@ -1,0 +1,10 @@
+<!-- Message -->
+{% if messages %}
+<!-- Loop Message -->
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+<!-- Message -->
+{% endif %}

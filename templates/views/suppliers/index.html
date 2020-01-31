@@ -1,4 +1,9 @@
-{% extends 'containers/base.html' %} {% block title %} Suppliers {% endblock %}
+{% extends 'containers/base.html' %}
+
+<!-- title -->
+{% block title %} Suppliers {% endblock %}
+
+<!-- end BreadCrumbs -->
 {% block breadCrumbs %}
 <ul class="breadcrumb">
   <li class="breadcrumb-item">
@@ -9,7 +14,13 @@
 <!-- END breadcrumb -->
 <!-- BEGIN page-header -->
 <h5 class="page-header">LIST <small>show the list of suppliers...</small></h5>
-{% endblock %} {% block content %}
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- messages -->
+{% include 'containers/messages/message.html' %}
 
 <div class="card ">
   <div class="card-body">
@@ -44,17 +55,23 @@
           </td>
           <td class="text-center">
             <a
-              href="/app/suppliers/{{supplier.id}}"
+              href="{% url 'show_supplier' code=supplier.supplier_code %}?tab=orders"
               class="btn btn-default btn-xs btn-info"
             >
               <i class="ti-search text-white"></i>
             </a>
-            <a class="btn btn-default btn-xs btn-primary"
-              ><i class="ti-pencil text-white"></i
-            ></a>
-            <a class="btn btn-default btn-xs btn-danger"
-              ><i class="ti-close text-white"></i
-            ></a>
+            <a
+              href="{% url 'edit_supplier' code=supplier.supplier_code %}"
+              class="btn btn-default btn-xs btn-primary"
+            >
+              <i class="ti-pencil text-white"></i>
+            </a>
+            <a
+              href="{% url 'delete_supplier' id=supplier.id %}"
+              class="btn btn-default btn-xs btn-danger"
+            >
+              <i class="ti-close text-white"></i>
+            </a>
           </td>
         </tr>
 
@@ -64,7 +81,10 @@
   </div>
 </div>
 
-{% endblock %} {% block extraCSS%}
+{% endblock %}
+
+<!-- styles -->
+{% block extraCSS%}
 <link
   rel="stylesheet"
   href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"

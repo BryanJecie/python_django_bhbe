@@ -1,0 +1,45 @@
+{% extends 'containers/base.html' %}
+
+<!-- title -->
+{% block title %} Suppliers ~ Edit{% endblock %}
+
+<!-- end BreadCrumbs -->
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/app/suppliers">Suppliers</a>
+  </li>
+  <!-- <li class="breadcrumb-item active">List of active and inactive employees</li> -->
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+<h5 class="page-header">EDIT <small>Supplier information.</small></h5>
+{% endblock %}
+
+<!-- form plugins -->
+{% load crispy_forms_tags %}
+
+<!-- content -->
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-uppercase">{{ items.supplier.supplier_name}}</h5>
+
+    <div class="row">
+      <div class="col-md-8">
+        <form action="/app/suppliers/update/" method="POST">
+          {% csrf_token %}
+          <!-- form -->
+          {{items.form|crispy}}
+
+          <div class="form-group">
+            <button class="btn btn-success">Update</button>
+            <button class="btn btn-default btn-sm">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -12,10 +12,12 @@
   <li class="breadcrumb-item active">Show</li>
 </ul>
 <!-- {% comment %}
-<h5 class="page-header">
-  {{items.supplier.supplier_name|upper}}
-</h5>
+
 {% endcomment %}  -->
+
+<h5 class="page-header">
+  Show Supplier
+</h5>
 
 {% endblock %}
 <!-- load form -->
@@ -25,34 +27,53 @@
 {% block content %}
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="card">
-      <!-- {% comment %}
-      <img
-        class="card-img-top"
-        data-src="holder.js/100x180/?text=Image cap"
-        alt="Card image cap"
-      />
-      {% endcomment %} -->
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-10">
-            <h3 class="card-title">
-              {{items.supplier.supplier_name|capfirst }}
-            </h3>
-          </div>
-          <div class="col-sm-2">
+          <div class="col-md-12">
             <span class="float-right">
-              <a href="" class="mr-2 f-s-20"><i class="ti-pencil"></i></a>
-              <a href="" class="f-s-20"><i class="ti-trash text-danger"></i></a>
+              <a
+                href="{% url 'edit_supplier' code=items.supplier.supplier_code %}"
+                class="mr-2 f-s-20"
+                ><i class="ti-pencil"></i
+              ></a>
+              <a
+                href="{% url 'delete_supplier' id=items.supplier.id %}"
+                class="f-s-20"
+              >
+                <i class="ti-trash text-danger"></i
+              ></a>
             </span>
-            <!-- <h4 class="card-title">Title</h4> -->
+          </div>
+          <div class="col-md-12 text-center">
+            <img
+              class="img-circle"
+              width="200"
+              height="200"
+              src="https://www.w3schools.com/bootstrap/paris.jpg"
+            />
           </div>
         </div>
-        <!-- <h4 class="card-title">Title</h4>
-        <p class="card-text">Text</p> -->
       </div>
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush mt-2">
+        <li class="list-group-item">
+          <i class="ti-user"></i>
+          <strong>{{items.supplier.supplier_name|capfirst }}</strong>
+        </li>
+        <li class="list-group-item">
+          {% if items.supplier.supplier_status == 'active' %}
+          <i class="ti-control-record   text-success"></i>
+          <span class="text-success">
+            {{items.supplier.supplier_status|capfirst }}
+          </span>
+          {% else %}
+          <i class="ti-control-record text-danger"></i>
+          <span class="text-danger">
+            {{items.supplier.supplier_status|capfirst }}
+          </span>
+          {% endif %}
+        </li>
         <li class="list-group-item">
           <i class="ti-email"></i>
           <a href="">
@@ -67,127 +88,65 @@
           <i class="ti-home"></i>
           {{items.supplier.supplier_address }}
         </li>
-        <li class="list-group-item">
-          {% if items.supplier.supplier_status == 'active' %}
-          <i class="ti-control-record   text-success"></i>
-          <span class="badge badge-success">
-            {{items.supplier.supplier_status|capfirst }}
-          </span>
-          {% else %}
-          <i class="ti-control-record   text-danger"></i>
-
-          <span class="badge badge-danger">
-            {{items.supplier.supplier_status|capfirst }}
-          </span>
-          {% endif %}
-        </li>
       </ul>
     </div>
-    <!-- <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Body</p>
-      </div>
-    </div> -->
   </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a
-          class="nav-link active"
+          class="nav-link {% if items.tab == 'orders' %} active {% endif %}"
           id="home-tab"
-          data-toggle="tab"
-          href="#home"
-          role="tab"
-          aria-controls="home"
-          aria-selected="true"
+          href="{% url 'show_supplier' code=items.supplier.supplier_code %}?tab=orders"
         >
           Orders
         </a>
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
+          class="nav-link {% if items.tab == 'profile' %} active {% endif %}"
           id="profile-tab"
-          data-toggle="tab"
-          href="#profile"
-          role="tab"
-          aria-controls="profile"
-          aria-selected="false"
+          href="{% url 'show_supplier' code=items.supplier.supplier_code %}?tab=profile"
           >Profile</a
         >
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
+          class="nav-link {% if items.tab == 'contact' %} active {% endif %}"
           id="contact-tab"
-          data-toggle="tab"
-          href="#contact"
-          role="tab"
-          aria-controls="contact"
-          aria-selected="false"
+          href="{% url 'show_supplier' code=items.supplier.supplier_code %}?tab=contact"
           >Contact</a
         >
       </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content bg-white" id="myTabContent">
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade  {% if items.tab == 'orders' %} show active {% endif %} "
         id="home"
         role="tabpanel"
         aria-labelledby="home-tab"
-      ></div>
+      >
+        {% include 'views/suppliers/tabs/orders.html' %}
+      </div>
       <div
-        class="tab-pane fade"
+        class="tab-pane fade {% if items.tab == 'profile' %} show active {% endif %}"
         id="profile"
         role="tabpanel"
         aria-labelledby="profile-tab"
       >
-        ...
+        <h1>Profile</h1>
       </div>
       <div
-        class="tab-pane fade"
+        class="tab-pane fade {% if items.tab == 'contact' %} show active {% endif %}"
         id="contact"
         role="tabpanel"
         aria-labelledby="contact-tab"
       >
-        ...
-      </div>
-    </div>
-    <!-- {% comment %}
-    <nav class="nav nav-tabs nav-stacked">
-      <a class="nav-link active" href="#">Active link</a>
-      <a class="nav-link" href="#">Link</a>
-      <a class="nav-link " href="#">Disabled link</a>
-    </nav>
-    {% endcomment %} 
-    {% comment %}
-    <div class="card text-left">
-      <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Body</p>
-      </div>
-    </div>
-    {% endcomment %} -->
-  </div>
-</div>
-<!-- {% comment %}
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-8  p-25">
-        <form action="/app/suppliers/store/" method="POST">
-          {% csrf_token %} {{items.form|crispy}}
-          <hr />
-          <button type="submit" class="btn btn-info" style="">Save</button>
-          <button type="button" class="btn btn-default btn-sm ">Cancel</button>
-        </form>
+        <h1>Contact</h1>
       </div>
     </div>
   </div>
 </div>
-{% endcomment %}  -->
-
 {% endblock %}
 
 <!-- for js content -->

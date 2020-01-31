@@ -20,7 +20,7 @@ class Supplier(models.Model):
     supplier_status = models.CharField(max_length=10, default="active")
 
     def __str__():
-        return self.supplier_name
+        return self
 
     # def get_supplier(id):
     #     return self.Supplier.find(id)

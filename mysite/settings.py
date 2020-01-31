@@ -146,3 +146,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = "/app/dashboard"
 
 LOGOUT_REDIRECT_URL = "/"
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+

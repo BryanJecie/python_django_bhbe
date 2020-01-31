@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.contrib import messages
 from utilities.helper import navBar
 
 from .forms import SupplierForm
 
 from .models import Supplier
 
-# from .models import Supplier
+from querybuilder.query import Query
 
 
 def index(response):
@@ -28,26 +28,46 @@ def create(request):
 
 
 def store(request):
-    if request.method == "POST":
-        form = SupplierForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/app/suppliers")
+    form = SupplierForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+        return redirect("/app/suppliers")
 
 
-def show(request, id):
+def show(request, code):
 
-    supplier = Supplier.objects.get(id=id)
+    supplier = Supplier.objects.get(supplier_code=code)
 
     data = {
-        "navbar": navBar("suppliers", "new"),
-        "form": SupplierForm(instance=supplier),
+        "navbar": navBar("suppliers", ""),
+        "tab": request.GET.get("tab"),
         "supplier": supplier,
     }
 
     return render(request, "views/suppliers/show.html", {"items": data})
 
-    # for target_list in expression_list:
-    #     pass
 
-    # return HttpResponse(supplier)
+def edit(request, code):
+
+    supplier = Supplier.objects.get(supplier_code=code)
+
+    data = {
+        "navbar": navBar("suppliers", ""),
+        "form": SupplierForm(instance=supplier),
+        "supplier": supplier,
+    }
+
+    return render(request, "views/suppliers/edit.html", {"items": data})
+
+
+def distroy(request, id):
+
+    supplier = Supplier.objects.get(id=id)
+
+    supplier.delete()
+
+    messages.success(request, "Supplier has successfully deleted")
+
+    return redirect("/app/suppliers")
+

@@ -1,45 +1,42 @@
 {% extends 'containers/base.html' %}
 
+<!-- Title -->
+{% block title %} Suppliers ~ New{% endblock %}
 
-{% block title %} Suppliers ~ New{% endblock  %}
-
+<!-- breadcrums -->
 {% block breadCrumbs %}
-    <ul class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/app/suppliers">Suppliers</a>
-        </li>
-        <li class="breadcrumb-item active">New</li>
-    <!--  -->
-    </ul>
-    <!-- END breadcrumb -->
-    <!-- BEGIN page-header -->
-    <h5 class="page-header">
-        NEW <small>Create new supplier information</small>
-    </h5>
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/app/suppliers">Suppliers</a>
+  </li>
+  <li class="breadcrumb-item active">New</li>
+  <!--  -->
+</ul>
+<!-- END breadcrumb -->
+<h5 class="page-header">NEW <small>Create new supplier information</small></h5>
 {% endblock %}
-    
+
+<!-- form plugins here -->
 {% load crispy_forms_tags %}
 
+<!-- content here -->
 {% block content %}
 
 <div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-8  p-25">
-                <form action="/app/suppliers/store/" method="POST">
-                    {% csrf_token %}
-                    {{items.newForm|crispy}}
-                    {% comment %} <div class="form-group">
-                        <label for="address">Supplier Address</label>
-                        <textarea class="form-control" name="supplier_address" id="address" rows="3"></textarea>
-                    </div> {% endcomment %}
-                    <hr>
-                    <button type="submit" class="btn btn-info" style="">Save</button>
-                    <button type="button" class="btn btn-default btn-sm ">Cancel</button>
-                </form>
-            </div>
-        </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-8  p-25">
+        <form action="/app/suppliers/store/" method="POST">
+          {% csrf_token %}
+          <!-- form -->
+          {{items.newForm|crispy}}
+          <hr />
+          <button type="submit" class="btn btn-info" style="">Save</button>
+          <button type="button" class="btn btn-default btn-sm ">Cancel</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
 {% endblock %}
