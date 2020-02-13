@@ -4,7 +4,6 @@ from django.contrib import messages
 from utilities.helper import navBar
 
 from .forms import SupplierForm
-
 from .models import Supplier
 
 from querybuilder.query import Query
@@ -20,11 +19,11 @@ def index(response):
     return render(response, "views/suppliers/index.html", {"items": data})
 
 
-def create(request):
+def create(response):
 
     data = {"navbar": navBar("suppliers", "new"), "newForm": SupplierForm()}
 
-    return render(request, "views/suppliers/create.html", {"items": data})
+    return render(response, "views/suppliers/create.html", {"items": data})
 
 
 def store(request):
@@ -46,7 +45,6 @@ def show(request, code):
     }
 
     return render(request, "views/suppliers/show.html", {"items": data})
-
 
 def edit(request, code):
 

@@ -1,305 +1,335 @@
 <div id="sidebar" class="sidebar sidebar-light ">
-	<!-- BEGIN scrollbar -->
-	<div data-scrollbar="true" data-height="100%">
-		<!-- BEGIN nav -->
-		<ul class="nav">
-			<li class="nav-profile">
-				<div class="image">
-					<img src="../assets/img/user.jpg" />
-				</div>
-				<div class="info">
-					<h4>Sean Ngu</h4>
-					<p>UXUI Frontend Developer</p>
-				</div>
-			</li>
-			<li class="nav-divider"></li>
-			<li class="nav-header">Navigation</li>
-			<li
-				class="{% if items.navbar.parent == 'dashboard' %}active{% endif %}"
-			>
-				<a href="/app/dashboard">
-					<i class="ti-layout"></i>
-					<span>Dashboard </span>
-				</a>
-			</li>
-			<li
-				class="has-sub {% if items.navbar.parent == 'employees' %}active{% endif %}"
-			>
-				<a href="javascript:;">
-					<span class="caret caret-right pull-right"></span>
-					<i class="ti-briefcase"></i><span>Employees</span>
-				</a>
-				<ul class="sub-menu">
-					<li
-						class="{% if items.navbar.child.manage %}active{% endif %}"
-					>
-						<a href="/app/employees">Manage Employees</a>
-					</li>
-					<li class="{% if items.navbar.child.new %}active{% endif %}">
-						<a href="/app/employees/new">New Employee</a>
-					</li>
-					<li><a href="/app/employees/invoices">Employee Invoices</a></li>
-				</ul>
-			</li>
-			<li class="has-sub {% if items.navbar.parent == 'suppliers' %}active{% endif %}">
-				<a href="javascript:;">
-					<span class="caret caret-right pull-right"></span>
-					<i class="ti-truck"></i><span>Suppliers</span>
-				</a>
-				<ul class="sub-menu">
-					<li
-						class="{% if items.navbar.child.manage %}active{% endif %}"
-					>
-						<a href="/app/suppliers">Manage Suppliers</a>
-					</li>
-					<li class="{% if items.navbar.child.new %}active{% endif %}">
-						<a href="/app/suppliers/new">New Supplier</a>
-					</li>
-				</ul>
+  <!-- BEGIN scrollbar -->
+  <div data-scrollbar="true" data-height="100%">
+    <!-- BEGIN nav -->
+    <ul class="nav">
+      <li class="nav-profile">
+        <div class="image">
+          <img src="../assets/img/user.jpg" />
+        </div>
+        <div class="info">
+          <h4>Sean Ngu</h4>
+          <p>UXUI Frontend Developer</p>
+        </div>
+      </li>
+      <li class="nav-divider"></li>
+      <li class="nav-header">Navigation</li>
+      <li class="{% if items.navbar.parent == 'dashboard' %}active{% endif %}">
+        <a href="/app/dashboard">
+          <i class="ti-layout"></i>
+          <span>Dashboard </span>
+        </a>
+      </li>
+      <li
+        class="has-sub {% if items.navbar.parent == 'employees' %}active{% endif %}"
+      >
+        <a href="javascript:;">
+          <span class="caret caret-right pull-right"></span>
+          <i class="ti-briefcase"></i><span>Employees</span>
+        </a>
+        <ul class="sub-menu">
+          <li class="{% if items.navbar.child.manage %}active{% endif %}">
+            <a href="/app/employees">Manage Employees</a>
+          </li>
+          <li class="{% if items.navbar.child.new %}active{% endif %}">
+            <a href="/app/employees/new">New Employee</a>
+          </li>
+          <li><a href="/app/employees/invoices">Employee Invoices</a></li>
+        </ul>
+      </li>
+      <li
+        class="has-sub {% if items.navbar.parent == 'suppliers' %}active{% endif %}"
+      >
+        <a href="javascript:;">
+          <span class="caret caret-right pull-right"></span>
+          <i class="ti-truck"></i><span>Suppliers</span>
+        </a>
+        <ul class="sub-menu">
+          <li class="{% if items.navbar.child.manage %}active{% endif %}">
+            <a href="/app/suppliers">Manage Suppliers</a>
+          </li>
+          <li class="{% if items.navbar.child.new %}active{% endif %}">
+            <a href="/app/suppliers/new">New Supplier</a>
+          </li>
+        </ul>
+      </li>
 
-			</li>
-			<li>
-				<a href="/app/users"><i class="ti-user"></i><span>Users</span></a>
-			</li>
-			<li class="nav-divider"></li>
+      <li
+        class="has-sub {% if items.navbar.parent == 'products' %}active{% endif %}"
+      >
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-briefcase"></i>
+          <span>Products</span>
+        </a>
+        <ul class="sub-menu">
+          <li
+            class="has-sub {% if items.navbar.subparent == 'category' %}active{% endif %}"
+          >
+            <a href="javascript:;">
+              <b class="caret caret-right pull-right"></b>
+              <i class="ti-dropbox"></i>
+              Categories
+            </a>
+            <ul class="sub-menu">
+              <li
+                class="{% if items.navbar.child == 'manage-category' %}active{% endif %}"
+              >
+                <a href="/app/products/category">Manage Category</a>
+              </li>
+              <li
+                class="{% if items.navbar.child == 'manage-brands' %}active{% endif %}"
+              >
+                <a href="/app/products/brands">Manage Brands</a>
+              </li>
+            </ul>
+          </li>
+          <li class="{% if items.navbar.child.manage %}active{% endif %}">
+            <a href="{% url 'manage_products' %}">
+              Manage Product
+            </a>
+          </li>
+          <li class="{% if items.navbar.child.new %}active{% endif %}">
+            <a href="{% url 'create_products' %}">New Product</a>
+          </li>
+          <li><a href="javascript:;">Damage Product</a></li>
+        </ul>
+      </li>
 
-			<li>
-				<a href="index.html"><i class="ti-home"></i><span>Home</span></a>
-			</li>
-			<li>
-				<a href="analytics.html"
-					><i class="ti-pie-chart"></i><span>Analytics</span></a
-				>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<span class="caret caret-right pull-right"></span>
-					<i class="ti-email"></i>
-					<span
-						>Email <span class="notification text-danger">20+</span></span
-					>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="email_inbox.html">Inbox</a></li>
-					<li><a href="email_compose.html">Compose</a></li>
-					<li><a href="email_detail.html">Detail</a></li>
-				</ul>
-			</li>
-			<li class="nav-divider"></li>
-			<li class="nav-header">Components</li>
-			<li>
-				<a href="widgets.html"
-					><i class="ti-shortcode"></i><span>Widgets</span></a
-				>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-heart"></i>
-					<span>UI Kits</span>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="ui_bootstrap.html">Bootstrap</a></li>
-					<li><a href="ui_buttons.html">Buttons</a></li>
-					<li><a href="ui_typography.html">Typography</a></li>
-					<li><a href="ui_tabs_accordions.html">Tabs & Accordions</a></li>
-					<li>
-						<a href="ui_modal_notification.html">Modal & Notification</a>
-					</li>
-					<li><a href="ui_panels.html">Panels</a></li>
-					<li><a href="ui_icons.html">Icons</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-notepad"></i>
-					<span>Forms</span>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="form_elements.html">Form Elements</a></li>
-					<li><a href="form_plugins.html">Form Plugins</a></li>
-					<li><a href="form_wizards.html">Wizards</a></li>
-					<li><a href="form_jquery_file_upload.html">File Upload</a></li>
-					<li><a href="form_summernote.html">Summernote</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-layout-grid2"></i>
-					<span>Tables</span>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="table_basic.html">Basic Tables</a></li>
-					<li><a href="table_data.html">DataTables</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="chart.html"
-					><i class="ti-bar-chart"></i><span>Chart</span></a
-				>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-map-alt"></i>
-					<span>Map</span>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="map_vector.html">Vector Map</a></li>
-					<li><a href="map_google.html">Google Map</a></li>
-				</ul>
-			</li>
-			<li class="has-sub ">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-layout-sidebar-left"></i>
-					<span>Layout</span>
-				</a>
-				<ul class="sub-menu">
-					<li>
-						<a href="layout_starter.html">Starter Page</a>
-					</li>
-					<li><a href="layout_fixed_footer.html">Fixed Footer</a></li>
-					<li><a href="layout_full_width.html">Full Width</a></li>
-					<li><a href="layout_boxed_layout.html">Boxed Layout</a></li>
-					<li><a href="layout_full_height.html">Full Height</a></li>
-				</ul>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-gift"></i>
-					<span>Pages</span>
-				</a>
-				<ul class="sub-menu">
-					<li><a href="page_gallery.html">Gallery</a></li>
-					<li><a href="page_coming_soon.html">Coming Soon Page</a></li>
-					<li><a href="page_search_results.html">Search Results</a></li>
-					<li><a href="page_404_error.html">404 Error Page</a></li>
-					<li><a href="page_login.html">Login</a></li>
-					<li><a href="page_register.html">Register</a></li>
-				</ul>
-			</li>
-			<li class="nav-divider"></li>
-			<li class="nav-header">Users</li>
-			<li>
-				<a href="profile.html"
-					><i class="ti-user"></i><span>Profile</span></a
-				>
-			</li>
-			<li>
-				<a href="calendar.html"
-					><i class="ti-calendar"></i> <span>Calendar</span></a
-				>
-			</li>
-			<li>
-				<a href="settings.html"
-					><i class="ti-settings"></i><span>Settings</span></a
-				>
-			</li>
-			<li>
-				<a href="helper.html"
-					><i class="ti-help-alt"></i><span>Helper</span></a
-				>
-			</li>
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret caret-right pull-right"></b>
-					<i class="ti-align-left"></i>
-					<span>Menu Level</span>
-				</a>
-				<ul class="sub-menu">
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret caret-right pull-right"></b>
-							Menu 1.1
-						</a>
-						<ul class="sub-menu">
-							<li class="has-sub">
-								<a href="javascript:;">
-									<b class="caret caret-right pull-right"></b>
-									Menu 2.1
-								</a>
-								<ul class="sub-menu">
-									<li><a href="javascript:;">Menu 3.1</a></li>
-									<li><a href="javascript:;">Menu 3.2</a></li>
-								</ul>
-							</li>
-							<li><a href="javascript:;">Menu 2.2</a></li>
-							<li><a href="javascript:;">Menu 2.3</a></li>
-						</ul>
-					</li>
-					<li><a href="javascript:;">Menu 1.2</a></li>
-					<li><a href="javascript:;">Menu 1.3</a></li>
-				</ul>
-			</li>
-			<li class="nav-divider"></li>
-			<li class="nav-header">Projects</li>
-			<li class="nav-project">
-				<a href="#">
-					<div class="project-icon">
-						<i class="ti-mobile"></i>
-					</div>
-					<div class="project-info">
-						<span class="pull-right project-percentage">70%</span>
-						<h4 class="project-title">Mobile App Dev</h4>
-						<div class="progress progress-xs">
-							<div
-								class="progress-bar bg-theme"
-								style="width: 70%;"
-								role="progressbar"
-							></div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="nav-project">
-				<a href="#">
-					<div class="project-icon">
-						<i class="ti-headphone"></i>
-					</div>
-					<div class="project-info">
-						<span class="pull-right project-percentage">40%</span>
-						<h4 class="project-title">New Audio Project</h4>
-						<div class="progress progress-xs">
-							<div
-								class="progress-bar bg-theme"
-								style="width: 40%;"
-								role="progressbar"
-							></div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="nav-project">
-				<a href="#">
-					<div class="project-icon">
-						<i class="ti-github"></i>
-					</div>
-					<div class="project-info">
-						<span class="pull-right project-percentage">50%</span>
-						<h4 class="project-title">Repository Settings</h4>
-						<div class="progress progress-xs">
-							<div
-								class="progress-bar bg-theme"
-								style="width: 50%;"
-								role="progressbar"
-							></div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="nav-divider"></li>
-			<li class="nav-copyright">&copy; 2017 seanTheme All Right Reserved</li>
-		</ul>
-		<!-- END nav -->
-	</div>
-	<!-- END scrollbar -->
-	<!-- BEGIN sidebar-minify-btn -->
-	<a href="#" class="sidebar-minify-btn" data-click="sidebar-minify"
-		><i class="ti-arrow-left"></i
-	></a>
-	<!-- END sidebar-minify-btn -->
+      <li>
+        <a href="/app/users"><i class="ti-user"></i><span>Users</span></a>
+      </li>
+      <li class="nav-divider"></li>
+
+      <li>
+        <a href="index.html"><i class="ti-home"></i><span>Home</span></a>
+      </li>
+      <li>
+        <a href="analytics.html"
+          ><i class="ti-pie-chart"></i><span>Analytics</span></a
+        >
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <span class="caret caret-right pull-right"></span>
+          <i class="ti-email"></i>
+          <span>Email <span class="notification text-danger">20+</span></span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="email_inbox.html">Inbox</a></li>
+          <li><a href="email_compose.html">Compose</a></li>
+          <li><a href="email_detail.html">Detail</a></li>
+        </ul>
+      </li>
+      <li class="nav-divider"></li>
+      <li class="nav-header">Components</li>
+      <li>
+        <a href="widgets.html"
+          ><i class="ti-shortcode"></i><span>Widgets</span></a
+        >
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-heart"></i>
+          <span>UI Kits</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="ui_bootstrap.html">Bootstrap</a></li>
+          <li><a href="ui_buttons.html">Buttons</a></li>
+          <li><a href="ui_typography.html">Typography</a></li>
+          <li><a href="ui_tabs_accordions.html">Tabs & Accordions</a></li>
+          <li>
+            <a href="ui_modal_notification.html">Modal & Notification</a>
+          </li>
+          <li><a href="ui_panels.html">Panels</a></li>
+          <li><a href="ui_icons.html">Icons</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-notepad"></i>
+          <span>Forms</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="form_elements.html">Form Elements</a></li>
+          <li><a href="form_plugins.html">Form Plugins</a></li>
+          <li><a href="form_wizards.html">Wizards</a></li>
+          <li><a href="form_jquery_file_upload.html">File Upload</a></li>
+          <li><a href="form_summernote.html">Summernote</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-layout-grid2"></i>
+          <span>Tables</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="table_basic.html">Basic Tables</a></li>
+          <li><a href="table_data.html">DataTables</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="chart.html"><i class="ti-bar-chart"></i><span>Chart</span></a>
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-map-alt"></i>
+          <span>Map</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="map_vector.html">Vector Map</a></li>
+          <li><a href="map_google.html">Google Map</a></li>
+        </ul>
+      </li>
+      <li class="has-sub ">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-layout-sidebar-left"></i>
+          <span>Layout</span>
+        </a>
+        <ul class="sub-menu">
+          <li>
+            <a href="layout_starter.html">Starter Page</a>
+          </li>
+          <li><a href="layout_fixed_footer.html">Fixed Footer</a></li>
+          <li><a href="layout_full_width.html">Full Width</a></li>
+          <li><a href="layout_boxed_layout.html">Boxed Layout</a></li>
+          <li><a href="layout_full_height.html">Full Height</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-gift"></i>
+          <span>Pages</span>
+        </a>
+        <ul class="sub-menu">
+          <li><a href="page_gallery.html">Gallery</a></li>
+          <li><a href="page_coming_soon.html">Coming Soon Page</a></li>
+          <li><a href="page_search_results.html">Search Results</a></li>
+          <li><a href="page_404_error.html">404 Error Page</a></li>
+          <li><a href="page_login.html">Login</a></li>
+          <li><a href="page_register.html">Register</a></li>
+        </ul>
+      </li>
+      <li class="nav-divider"></li>
+      <li class="nav-header">Users</li>
+      <li>
+        <a href="profile.html"><i class="ti-user"></i><span>Profile</span></a>
+      </li>
+      <li>
+        <a href="calendar.html"
+          ><i class="ti-calendar"></i> <span>Calendar</span></a
+        >
+      </li>
+      <li>
+        <a href="settings.html"
+          ><i class="ti-settings"></i><span>Settings</span></a
+        >
+      </li>
+      <li>
+        <a href="helper.html"><i class="ti-help-alt"></i><span>Helper</span></a>
+      </li>
+      <li class="has-sub">
+        <a href="javascript:;">
+          <b class="caret caret-right pull-right"></b>
+          <i class="ti-align-left"></i>
+          <span>Menu Level</span>
+        </a>
+        <ul class="sub-menu">
+          <li class="has-sub">
+            <a href="javascript:;">
+              <b class="caret caret-right pull-right"></b>
+              Menu 1.1
+            </a>
+            <ul class="sub-menu">
+              <li class="has-sub">
+                <a href="javascript:;">
+                  <b class="caret caret-right pull-right"></b>
+                  Menu 2.1
+                </a>
+                <ul class="sub-menu">
+                  <li><a href="javascript:;">Menu 3.1</a></li>
+                  <li><a href="javascript:;">Menu 3.2</a></li>
+                </ul>
+              </li>
+              <li><a href="javascript:;">Menu 2.2</a></li>
+              <li><a href="javascript:;">Menu 2.3</a></li>
+            </ul>
+          </li>
+          <li><a href="javascript:;">Menu 1.2</a></li>
+          <li><a href="javascript:;">Menu 1.3</a></li>
+        </ul>
+      </li>
+      <li class="nav-divider"></li>
+      <li class="nav-header">Projects</li>
+      <li class="nav-project">
+        <a href="#">
+          <div class="project-icon">
+            <i class="ti-mobile"></i>
+          </div>
+          <div class="project-info">
+            <span class="pull-right project-percentage">70%</span>
+            <h4 class="project-title">Mobile App Dev</h4>
+            <div class="progress progress-xs">
+              <div
+                class="progress-bar bg-theme"
+                style="width: 70%;"
+                role="progressbar"
+              ></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="nav-project">
+        <a href="#">
+          <div class="project-icon">
+            <i class="ti-headphone"></i>
+          </div>
+          <div class="project-info">
+            <span class="pull-right project-percentage">40%</span>
+            <h4 class="project-title">New Audio Project</h4>
+            <div class="progress progress-xs">
+              <div
+                class="progress-bar bg-theme"
+                style="width: 40%;"
+                role="progressbar"
+              ></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="nav-project">
+        <a href="#">
+          <div class="project-icon">
+            <i class="ti-github"></i>
+          </div>
+          <div class="project-info">
+            <span class="pull-right project-percentage">50%</span>
+            <h4 class="project-title">Repository Settings</h4>
+            <div class="progress progress-xs">
+              <div
+                class="progress-bar bg-theme"
+                style="width: 50%;"
+                role="progressbar"
+              ></div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="nav-divider"></li>
+      <li class="nav-copyright">&copy; 2017 seanTheme All Right Reserved</li>
+    </ul>
+    <!-- END nav -->
+  </div>
+  <!-- END scrollbar -->
+  <!-- BEGIN sidebar-minify-btn -->
+  <a href="#" class="sidebar-minify-btn" data-click="sidebar-minify"
+    ><i class="ti-arrow-left"></i
+  ></a>
+  <!-- END sidebar-minify-btn -->
 </div>

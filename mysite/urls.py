@@ -33,6 +33,7 @@ urlpatterns = [
                 url(r"^employees/", include("employees.urls")),
                 url(r"^suppliers/", include("supplier.urls")),
                 url(r"^users/", include("users.urls")),
+                url(r"^products/", include("products.urls")),
             ]
         ),
     ),

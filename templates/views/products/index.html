@@ -1,0 +1,73 @@
+{% extends 'containers/base.html' %}
+
+<!-- Title Here -->
+{% block title %} Products {% endblock %}
+
+<!-- Bread Crumbs -->
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Products</a></li>
+  <!-- <li class="breadcrumb-item active">List of active and inactive employees</li> -->
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+<!-- <h5 class="page-header">
+  DataTables <small>page header description goes here...</small>
+</h5> -->
+{% endblock %}
+
+<!-- content Here -->
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <table class="table table-striped" id="products-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Brand</th>
+          <th>Name</th>
+          <th>Barcode</th>
+          <th>Date Created</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in items.products %}
+        <tr>
+          <td>{{ product.brand.category.category_name|capfirst }}</td>
+          <td>{{ product.brand.brand_name|capfirst }}</td>
+          <td>{{ product.product_name|capfirst }}</td>
+          <td></td>
+          <td>{{ product.date_created }}</td>
+          <td>
+            <a href="" class="btn btn-default btn-xs btn-info">
+              <i class="ti-search text-white"></i>
+            </a>
+            <a href="" class="btn btn-default btn-xs btn-primary">
+              <i class="ti-pencil text-white"></i>
+            </a>
+            <a href="" class="btn btn-default btn-xs btn-danger">
+              <i class="ti-close text-white"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+<!-- styles -->
+{% block extraCSS%}
+<link
+  rel="stylesheet"
+  href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+/>
+{% endblock %} {% block extraJS %}
+<script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+  $("#products-table").DataTable();
+</script>
+
+{% endblock %}

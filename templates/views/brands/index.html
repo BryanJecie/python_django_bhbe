@@ -1,0 +1,135 @@
+{% extends 'containers/base.html' %}
+
+<!-- Title Here -->
+{% block title %} Brands {% endblock %}
+
+<!-- Bread Crumbs -->
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'index_brands' %}">Brands</a></li>
+  {% if items.title == 'edit' %}
+  <li class="breadcrumb-item active">
+    Edit
+  </li>
+  {% endif %}
+  <!-- <li class="breadcrumb-item active">List of active and inactive employees</li> -->
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+<h5 class="page-header">
+  Brand Content
+</h5>
+{% endblock %}
+
+<!-- form Plugins -->
+
+{% load crispy_forms_tags %}
+
+<!-- start Content here -->
+
+{% block content %}
+<!-- Message here -->
+{% include 'containers/messages/message.html' %}
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            {% if items.title == 'edit' %}
+            <h5 class="card-title">
+              EDIT {{items.brand.brand_name|upper}} :
+              <a
+                href="{% url 'index_brands' %}"
+                class="float-right"
+                style="margin-top:-5px;"
+                title="New Category"
+              >
+                <small> <i class="ti-plus"></i> NEW </small>
+              </a>
+            </h5>
+            {% else %}
+            <h5 class="card-title">
+              NEW :
+            </h5>
+            {% endif %}
+          </div>
+        </div>
+        <hr style="margin-top: 5px;" />
+
+        <div class="row">
+          <div class="col-md-12">
+            <form action="{{items.form.route}}" method="POST">
+              {% csrf_token %}
+              <!-- forms here -->
+              {{items.form.data|crispy}}
+
+              <div class="form-group">
+                <button class="btn btn-info btn-sm">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <!-- <h5 class="card-title">Title</h5> -->
+        <table class="table table-light" id="brands-table">
+          <thead class="thead-light">
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+              <th>Brand Name</th>
+              <th>Date Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for brand in items.brands %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{brand.brand_name|capfirst}}</td>
+              <td>{{brand.category.category_name|capfirst}}</td>
+              <td>{{brand.date_created}}</td>
+              <td>
+                <a
+                  href="{% url 'edit_brand' id=brand.id %}"
+                  class="btn btn-default btn-xs btn-info"
+                >
+                  <i class="ti-pencil text-white"></i>
+                </a>
+                <a
+                  href="{% url 'delete_brand' id=brand.id %}"
+                  class="btn btn-default btn-xs btn-danger"
+                >
+                  <i class="ti-close text-white"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- styles -->
+{% block extraCSS%}
+<link
+  rel="stylesheet"
+  href="http://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+/>
+{% endblock %} {% block extraJS %}
+<script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+  $("#brands-table").DataTable();
+</script>
+
+{% endblock %}

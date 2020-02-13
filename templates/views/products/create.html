@@ -1,0 +1,82 @@
+<!-- Extend for base html -->
+{% extends 'containers/base.html' %}
+
+<!-- Title Here -->
+{% block title %} Products {% endblock %}
+
+<!-- Bread Crumbs -->
+{% block breadCrumbs %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="{% url 'manage_products' %}">Products</a>
+  </li>
+  <li class="breadcrumb-item active">New</li>
+</ul>
+<!-- END breadcrumb -->
+<!-- BEGIN page-header -->
+{% endblock %}
+
+<!-- form plugins -->
+{% load crispy_forms_tags %}
+<!-- content Here -->
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <!-- <h5 class="card-title">Title</h5> -->
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Product Form</h4>
+        <hr />
+        <form action="{% url 'store_products' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="barcode">Barcode<span>*</span></label>
+            <input
+              id="barcode"
+              class="form-control"
+              type="text"
+              name="barcode"
+              autocomplete="off"
+            />
+          </div>
+          <!-- form Here -->
+          {{items.form|crispy}}
+
+          <div class="form-group">
+            <button class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-default btn-sm">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <h4>Product Image</h4>
+        <hr />
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+  <!-- extend css -->
+  {% block extraCSS %}
+  <style></style>
+  {% endblock %}
+
+  <!-- extend JS -->
+  {% block extraJS %}
+
+  <script>
+    var doc = $(document);
+
+    doc.ready(function() {
+      $.get("{% url 'load_barcode' %}", function(barcode) {
+        $("#barcode").autocomplete({
+          source: barcode
+        });
+      });
+    });
+  </script>
+
+  {% endblock %}
+</div>
